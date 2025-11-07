@@ -38,7 +38,10 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/usuarios/login", "/api/usuarios/cadastro").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/obras/**").permitAll()
+                        // Libera catálogo (raiz e filhos)
+                        .requestMatchers(HttpMethod.GET, "/api/obras", "/api/obras/**").permitAll()
+                        // (opcional) Libera acesso público a TMDB proxy, se existir
+                        .requestMatchers(HttpMethod.GET, "/api/tmdb/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
