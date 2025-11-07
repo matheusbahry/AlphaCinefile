@@ -1,0 +1,25 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Java / Maven
+**/target/
+*.class
+
+# Node/Web (future-proof)
+node_modules/
+dist/
+build/
+out/
+
+# Local config (frontend)
+Frontend_cinefile/js/config.js
+
+# Ignore local Spring properties with secrets
+cinefile_backend/src/main/resources/application.properties
+
+# Local config (backend)
+cinefile_backend/src/main/resources/application-local.properties
