@@ -15,6 +15,7 @@ Projeto com frontend estático (`Frontend_cinefile/`) e backend Spring Boot (`ci
 - O front usa `js/api.js` para centralizar chamadas ao backend e enviar `Authorization: Basic ...` quando logado.
 - Em dev, se aberto via Live Server (porta 5500/qualquer porta local), o front chama o backend em `http://localhost:8080`.
 - CORS está centralizado no `SecurityConfig` e permite `localhost:*`/`127.0.0.1:*` em dev.
+ - Em produção/Pages: defina `window.API_BASE` em `Frontend_cinefile/js/config.js` ou passe `?api=https://SEU_BACKEND` na URL (ex.: `.../index.html?api=https%3A%2F%2Fseu-backend.com`).
 
 ## Publicando no GitHub
 - Segredos:
@@ -28,6 +29,14 @@ Projeto com frontend estático (`Frontend_cinefile/`) e backend Spring Boot (`ci
 ## Observações
 - Se as tabelas estiverem vazias, a home exibirá listas vazias até cadastrar obras.
 - Endpoints protegidos exigem Basic Auth; use as páginas de login/cadastro do frontend.
+
+### GitHub Pages (frontend)
+- O repositório possui o workflow `.github/workflows/pages.yml` que publica a pasta `Frontend_cinefile/` em `gh-pages`.
+- Habilite Pages nas configurações do repositório (Source: GitHub Actions) — o workflow fará o deploy automático em pushes para `main`.
+- Para o front falar com seu backend público, use uma das opções:
+  - Crie `Frontend_cinefile/js/config.js` com `window.API_BASE = "https://SEU_BACKEND";` (arquivo é ignorado pelo Git) e publique você mesmo o arquivo (ou torne-o público se não contiver segredos), ou
+  - Acesse com query param: `.../index.html?api=https%3A%2F%2FSEU_BACKEND`.
+
 
 ## Guia Rápido (Equipe)
 - URLs do frontend (abra via Live Server):

@@ -22,9 +22,16 @@
   }
 
   async function http(path, opts = {}) {
-    const base = (typeof window !== 'undefined' && window.API_BASE)
-      ? String(window.API_BASE).replace(/\/$/, "")
-      : baseUrl;
+    let base = baseUrl;
+    if (typeof window !== 'undefined') {
+      if (window.API_BASE) base = String(window.API_BASE).replace(/\/$/, "");
+      else {
+        try {
+          const p = new URLSearchParams(window.location.search).get('api');
+          if (p) base = String(p).replace(/\/$/, "");
+        } catch {}
+      }
+    }
     const res = await fetch(base + path, { ...opts, headers: buildHeaders(opts.headers || {}) });
     const text = await res.text();
     if (!res.ok) {
