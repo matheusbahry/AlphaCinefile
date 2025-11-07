@@ -1,0 +1,42 @@
+databases:
+  - name: alpha-cinefile-db
+    plan: free
+
+services:
+  - type: web
+    name: alpha-cinefile
+    env: java
+    plan: free
+    rootDirectory: cinefile_backend
+    buildCommand: ./mvnw -DskipTests package
+    startCommand: >-
+      java
+      -Dserver.port=$PORT
+      -Dspring.datasource.url=jdbc:postgresql://$DB_HOST:$DB_PORT/$DB_NAME
+      -Dspring.datasource.username=$DB_USER
+      -Dspring.datasource.password=$DB_PASSWORD
+      -jar target/*.jar
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: alpha-cinefile-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: alpha-cinefile-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: alpha-cinefile-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: alpha-cinefile-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: alpha-cinefile-db
+          property: password
+      # Opcional: TMDB key se o backend vier a usar
+      - key: TMDB_API_KEY
+        value: ""

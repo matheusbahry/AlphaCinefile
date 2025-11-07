@@ -66,3 +66,22 @@ Projeto com frontend estático (`Frontend_cinefile/`) e backend Spring Boot (`ci
 
 - Prints internos (opcional):
   - Salve capturas em `docs/prints/` e referencie aqui se quiser compartilhar com stakeholders.
+
+## Deploy do backend (Render)
+Este repositório inclui um `render.yaml` (Blueprint) para deploy 1‑click no Render.
+
+Passos:
+- Acesse https://render.com e conecte seu GitHub.
+- Clique em New → Blueprint → selecione este repositório.
+- Confirme os serviços listados:
+  - Web Service `alpha-cinefile` (Java) apontando para `cinefile_backend`.
+  - PostgreSQL `alpha-cinefile-db` (free).
+- Crie o deploy. O Render criará as variáveis `DB_*` a partir do banco e usará:
+  - `java -Dserver.port=$PORT -Dspring.datasource.url=jdbc:postgresql://$DB_HOST:$DB_PORT/$DB_NAME -Dspring.datasource.username=$DB_USER -Dspring.datasource.password=$DB_PASSWORD -jar target/*.jar`
+- Aguarde a URL pública (ex.: `https://alpha-cinefile.onrender.com`).
+
+Ligando Pages ao backend público:
+- Use a página do GitHub Pages e acrescente `?api=` com a URL do backend codificada:
+  - Ex.: `https://matheusbahry.github.io/AlphaCinefile/index.html?api=https%3A%2F%2Falpha-cinefile.onrender.com`
+- Alternativa: crie `Frontend_cinefile/js/config.js` com:
+  - `window.API_BASE = "https://alpha-cinefile.onrender.com";`
