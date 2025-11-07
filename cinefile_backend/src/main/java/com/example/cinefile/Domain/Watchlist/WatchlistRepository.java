@@ -2,10 +2,13 @@ package com.example.cinefile.Domain.Watchlist;
 
 import com.example.cinefile.Domain.Watchlist.Watchlist;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 public interface WatchlistRepository extends JpaRepository<Watchlist, Long> {
 
-    boolean existsByObra_Obraid(Long obraid);
+    List<Watchlist> findAllByUsuario_Username(String username);
 
-    void deleteByObra_Obraid(Long obraid);
+    boolean existsByUsuario_UsernameAndObra_Obraid(String username, Long obraid);
+
+    void deleteByUsuario_UsernameAndObra_Obraid(String username, Long obraid);
 }

@@ -73,4 +73,19 @@ public class AvaliacaoService {
         var list = avaliacaoRepository.findByUsuario_UsernameOrderByDataCriacaoDesc(username, page);
         return list.stream().map(AvaliacaoResponseDTO::new).toList();
     }
+
+    public java.util.Map<String, Object> statsDaObra(Long obraId, Usuario usuario) {
+        Double media = avaliacaoRepository.mediaPorObra(obraId);
+        Long total = avaliacaoRepository.quantidadePorObra(obraId);
+        Integer minha = null;
+        if (usuario != null) {
+            var av = avaliacaoRepository.findFirstByUsuario_UsernameAndObra_Obraid(usuario.getUsername(), obraId);
+            if (av != null) minha = av.getNota();
+        }
+        java.util.Map<String,Object> m = new java.util.HashMap<>();
+        m.put("media", media == null ? 0.0 : media);
+        m.put("total", total == null ? 0L : total);
+        if (minha != null) m.put("minha", minha);
+        return m;
+    }
 }

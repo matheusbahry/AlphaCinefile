@@ -77,4 +77,13 @@ public class AvaliacaoController {
         var list = avaliacaoService.listarUltimasDoUsuario(usuarioLogado.getUsername(), page);
         return ResponseEntity.ok(list);
     }
+
+    // -------- GET: stats da obra --------
+    @GetMapping("/obra/{obraId}/stats")
+    public ResponseEntity<java.util.Map<String, Object>> statsObra(
+            @PathVariable Long obraId,
+            @AuthenticationPrincipal Usuario usuarioLogado
+    ) {
+        return ResponseEntity.ok(avaliacaoService.statsDaObra(obraId, usuarioLogado));
+    }
 }

@@ -2,7 +2,9 @@ package com.example.cinefile.Controller;
 
 import com.example.cinefile.Domain.Obra.Obra;
 import com.example.cinefile.Service.WatchlistService;
+import com.example.cinefile.Domain.Usuario.Usuario;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +20,23 @@ public class WatchlistController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Obra>> listar() {
-        return ResponseEntity.ok(watchlistService.listar());
+    public ResponseEntity<List<Obra>> listar(@AuthenticationPrincipal Usuario usuario) {
+        if (usuario == null) return ResponseEntity.status(401).build();
+        return ResponseEntity.ok(watchlistService.listar(usuario));
     }
 
     @PostMapping("/{obraId}")
-    public ResponseEntity<String> adicionar(@PathVariable Long obraId) {
-        watchlistService.adicionar(obraId);
+    public ResponseEntity<String> adicionar(@PathVariable Long obraId, @AuthenticationPrincipal Usuario usuario) {
+        if (usuario == null) return ResponseEntity.status(401).build();
+        watchlistService.adicionar(usuario, obraId);
         return ResponseEntity.ok("Obra adicionada à Watchlist!");
     }
 
     @DeleteMapping("/{obraId}")
-    public ResponseEntity<String> remover(@PathVariable Long obraId) {
-        watchlistService.remover(obraId);
+    public ResponseEntity<String> remover(@PathVariable Long obraId, @AuthenticationPrincipal Usuario usuario) {
+        if (usuario == null) return ResponseEntity.status(401).build();
+        watchlistService.remover(usuario, obraId);
         return ResponseEntity.ok("Removida da Watchlist.");
     }
 }
+
