@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cinefile — Detalhes</title>
+  <title>Cinefile â€” Detalhes</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" href="assets/favicon.ico" />
@@ -22,7 +22,7 @@
 
       <div class="nav__right">
         <nav class="nav__menu" aria-label="Principal">
-          <a href="index.html" class="nav__link">Catálogo</a>
+          <a href="index.html" class="nav__link">CatÃ¡logo</a>
           <a href="watchlist.html" class="nav__link requires-auth">Watchlist</a>
           <a href="watched.html" class="nav__link">Assistidos</a>
           <a href="profile.html" class="nav__link requires-auth">Perfil</a>
@@ -31,9 +31,9 @@
           <a href="#" class="nav__link link-logout">Sair</a>
         </nav>
 
-        <form class="nav__search" id="searchForm" role="search" aria-label="Buscar títulos">
+        <form class="nav__search" id="searchForm" role="search" aria-label="Buscar tÃ­tulos">
           <input type="search" id="searchInput" class="nav__searchInput"
-                 placeholder="Buscar..." aria-label="Buscar por filme ou série" />
+                 placeholder="Buscar..." aria-label="Buscar por filme ou sÃ©rie" />
           <span class="nav__icon-search"></span>
         </form>
       </div>
@@ -42,7 +42,7 @@
     <!-- Drawer mobile -->
     <div class="nav__drawer" id="navDrawer" hidden>
       <nav class="nav__menu" id="primaryMenu" aria-label="Principal">
-        <a href="index.html"     class="nav__link">Catálogo</a>
+        <a href="index.html"     class="nav__link">CatÃ¡logo</a>
         <a href="watchlist.html" class="nav__link requires-auth">Watchlist</a>
         <a href="watched.html"   class="nav__link">Assistidos</a>
         <a href="profile.html"   class="nav__link requires-auth">Perfil</a>
@@ -53,28 +53,28 @@
     </div>
   </header>
 
-  <!-- CONTEÚDO -->
+  <!-- CONTEÃšDO -->
   <main class="details">
     <section id="detailsState" class="container" aria-live="polite" style="margin:16px 0;"></section>
 
     <article id="detailsCard" class="details__card">
-      <!-- Preenchido via JS (poster, título, sinopse etc.) -->
+      <!-- Preenchido via JS (poster, tÃ­tulo, sinopse etc.) -->
     </article>
 
-    <!-- Ações -->
+    <!-- AÃ§Ãµes -->
     <section class="details__actions">
       <div class="actions__left">
         <button id="btnWatchlist" class="btn btn--primary" aria-live="polite">+ Watchlist</button>
       </div>
 
       <div class="actions__right">
-        <div id="ratingBlock" class="stars" aria-label="Avaliar este título">
+        <div id="ratingBlock" class="stars" aria-label="Avaliar este tÃ­tulo">
           <!-- 5 estrelas -->
-          <span class="star" aria-hidden="true">★</span>
-          <span class="star" aria-hidden="true">★</span>
-          <span class="star" aria-hidden="true">★</span>
-          <span class="star" aria-hidden="true">★</span>
-          <span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">â˜…</span>
+          <span class="star" aria-hidden="true">â˜…</span>
+          <span class="star" aria-hidden="true">â˜…</span>
+          <span class="star" aria-hidden="true">â˜…</span>
+          <span class="star" aria-hidden="true">â˜…</span>
         </div>
         <small id="ratingHint" class="muted"></small>
       </div>
@@ -83,12 +83,12 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2025 Cinefile — PFC Sistemas de Informação</p>
+    <p>Â© 2025 Cinefile â€” PFC Sistemas de InformaÃ§Ã£o</p>
   </footer>
 
   <!-- SCRIPTS (ordem importa) -->
   <!-- 1) API global -->
-<script src="js/api.js"></script>
+<script src="js/api.js"></script>`n  <script src="js/config.public.js"></script>`n  <script src="js/config.js"></script>
 <script src="js/components.js"></script>
 <script src="js/ratings.js"></script>
 <script src="js/details.js"></script>

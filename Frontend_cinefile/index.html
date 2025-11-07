@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cinefile — Catálogo</title>
+  <title>Cinefile â€” CatÃ¡logo</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
-  <!-- Cabeçalho -->
+  <!-- CabeÃ§alho -->
   <header class="nav">
     <div class="nav__container">
       <div class="nav__brand">Cinefile</div>
@@ -23,7 +23,7 @@
 
       <div class="nav__right">
         <nav class="nav__menu" aria-label="Principal">
-          <a href="index.html" class="nav__link">Catálogo</a>
+          <a href="index.html" class="nav__link">CatÃ¡logo</a>
           <a href="watchlist.html" class="nav__link requires-auth">Watchlist</a>
           <a href="watched.html" class="nav__link requires-auth">Assistidos</a>
           <a href="profile.html" class="nav__link requires-auth">Perfil</a>
@@ -33,9 +33,9 @@
           <a href="#" class="nav__link link-logout">Sair</a>
         </nav>
 
-        <form class="nav__search" id="searchForm" role="search" aria-label="Buscar títulos">
+        <form class="nav__search" id="searchForm" role="search" aria-label="Buscar tÃ­tulos">
           <input type="search" id="searchInput" class="nav__searchInput"
-                 placeholder="Buscar..." aria-label="Buscar por filme ou série" />
+                 placeholder="Buscar..." aria-label="Buscar por filme ou sÃ©rie" />
           <span class="nav__icon-search" aria-hidden="true"></span>
         </form>
       </div>
@@ -43,7 +43,7 @@
 
     <div class="nav__drawer" id="navDrawer" hidden>
       <nav class="nav__menu" id="primaryMenu" aria-label="Principal">
-        <a href="index.html" class="nav__link">Catálogo</a>
+        <a href="index.html" class="nav__link">CatÃ¡logo</a>
         <a href="watchlist.html" class="nav__link requires-auth">Watchlist</a>
         <a href="watched.html" class="nav__link requires-auth">Assistidos</a>
         <a href="profile.html" class="nav__link requires-auth">Perfil</a>
@@ -54,7 +54,7 @@
     </div>
   </header>
 
-  <!-- Conteúdo -->
+  <!-- ConteÃºdo -->
   <main class="home">
     <div id="catalogState" class="catalog__state" hidden></div>
 
@@ -65,41 +65,41 @@
         <div class="row__meta" id="searchCount">0 resultados</div>
       </div>
       <div class="row__scroller" id="searchScroller" tabindex="0"></div>
-      <button class="row__ctrlBtn is-left" data-target="searchScroller" data-dir="prev" aria-label="Anterior">‹</button>
-      <button class="row__ctrlBtn is-right" data-target="searchScroller" data-dir="next" aria-label="Próximo">›</button>
+      <button class="row__ctrlBtn is-left" data-target="searchScroller" data-dir="prev" aria-label="Anterior">â€¹</button>
+      <button class="row__ctrlBtn is-right" data-target="searchScroller" data-dir="next" aria-label="PrÃ³ximo">â€º</button>
     </section>
 
     <!-- Em alta -->
     <section class="row" aria-label="Em alta">
       <div class="row__head"><h2 class="row__title">Em alta</h2></div>
       <div class="row__scroller" id="featuredScroller" tabindex="0"></div>
-      <button class="row__ctrlBtn is-left" data-target="featuredScroller" data-dir="prev" aria-label="Anterior">‹</button>
-      <button class="row__ctrlBtn is-right" data-target="featuredScroller" data-dir="next" aria-label="Próximo">›</button>
+      <button class="row__ctrlBtn is-left" data-target="featuredScroller" data-dir="prev" aria-label="Anterior">â€¹</button>
+      <button class="row__ctrlBtn is-right" data-target="featuredScroller" data-dir="next" aria-label="PrÃ³ximo">â€º</button>
     </section>
 
     <!-- Filmes -->
     <section class="row" aria-label="Filmes">
       <div class="row__head"><h2 class="row__title">Filmes</h2></div>
       <div class="row__scroller" id="moviesScroller" tabindex="0"></div>
-      <button class="row__ctrlBtn is-left" data-target="moviesScroller" data-dir="prev" aria-label="Anterior">‹</button>
-      <button class="row__ctrlBtn is-right" data-target="moviesScroller" data-dir="next" aria-label="Próximo">›</button>
+      <button class="row__ctrlBtn is-left" data-target="moviesScroller" data-dir="prev" aria-label="Anterior">â€¹</button>
+      <button class="row__ctrlBtn is-right" data-target="moviesScroller" data-dir="next" aria-label="PrÃ³ximo">â€º</button>
     </section>
 
-    <!-- Séries -->
-    <section class="row" aria-label="Séries">
-      <div class="row__head"><h2 class="row__title">Séries</h2></div>
+    <!-- SÃ©ries -->
+    <section class="row" aria-label="SÃ©ries">
+      <div class="row__head"><h2 class="row__title">SÃ©ries</h2></div>
       <div class="row__scroller" id="seriesScroller" tabindex="0"></div>
-      <button class="row__ctrlBtn is-left" data-target="seriesScroller" data-dir="prev" aria-label="Anterior">‹</button>
-      <button class="row__ctrlBtn is-right" data-target="seriesScroller" data-dir="next" aria-label="Próximo">›</button>
+      <button class="row__ctrlBtn is-left" data-target="seriesScroller" data-dir="prev" aria-label="Anterior">â€¹</button>
+      <button class="row__ctrlBtn is-right" data-target="seriesScroller" data-dir="next" aria-label="PrÃ³ximo">â€º</button>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© 2025 Cinefile — PFC Sistemas de Informação</p>
+    <p>Â© 2025 Cinefile â€” PFC Sistemas de InformaÃ§Ã£o</p>
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="js/api.js"></script>
+  <script src="js/api.js"></script>`n  <script src="js/config.public.js"></script>
   <script src="js/config.js"></script>
   <script src="js/index.js"></script>
   <script src="js/components.js"></script>
@@ -107,7 +107,7 @@
   <script src="js/nav.js"></script>
   <script src="js/auth.js"></script>
 
-  <!-- Correção de pôsteres TMDB sem alterar layout -->
+  <!-- CorreÃ§Ã£o de pÃ´steres TMDB sem alterar layout -->
   <script>
   function resolvePoster(input) {
     if (!input) return "assets/placeholder.png";
@@ -129,3 +129,4 @@
   <script src="js/fix-posters.js"></script>
 </body>
 </html>
+

@@ -42,6 +42,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/usuarios/login", "/api/usuarios/cadastro").permitAll()
                         // Libera catálogo (raiz e filhos)
                         .requestMatchers(HttpMethod.GET, "/api/obras", "/api/obras/**").permitAll()
+                        // Stats de avaliações por obra podem ser públicas
+                        .requestMatchers(HttpMethod.GET, "/api/avaliacoes/obra/**").permitAll()
                         // (opcional) Libera acesso público a TMDB proxy, se existir
                         .requestMatchers(HttpMethod.GET, "/api/tmdb/**").permitAll()
                         .anyRequest().authenticated()
