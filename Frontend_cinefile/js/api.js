@@ -22,7 +22,10 @@
   }
 
   async function http(path, opts = {}) {
-    const res = await fetch(baseUrl + path, { ...opts, headers: buildHeaders(opts.headers || {}) });
+    const base = (typeof window !== 'undefined' && window.API_BASE)
+      ? String(window.API_BASE).replace(/\/$/, "")
+      : baseUrl;
+    const res = await fetch(base + path, { ...opts, headers: buildHeaders(opts.headers || {}) });
     const text = await res.text();
     if (!res.ok) {
       const err = new Error(text || String(res.status));
