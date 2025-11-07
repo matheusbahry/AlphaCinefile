@@ -8,7 +8,7 @@ services:
     env: java
     plan: free
     rootDirectory: cinefile_backend
-    buildCommand: ./mvnw -DskipTests package
+    buildCommand: chmod +x mvnw && ./mvnw -DskipTests package
     startCommand: >-
       java
       -Dserver.port=$PORT
