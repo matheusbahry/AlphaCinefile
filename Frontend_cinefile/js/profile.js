@@ -26,17 +26,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!scroller) return;
 
-  // últimos 8
-  const recent = (window.Ratings?.listSortedDesc?.() || []).slice(0, 8);
+  // últimos do backend (fallback local)
+  let recent = [];
+  try { recent = await API.Avaliacoes.minhas(8); } catch {}
+  if ((!recent || !recent.length) && window.Ratings?.listSortedDesc) {
+    recent = (window.Ratings.listSortedDesc() || []).slice(0, 8).map(r => ({ obraId: r.id, nota: r.rating }));
+  }
   if (metaEl) metaEl.textContent = recent.length ? `${recent.length} recente${recent.length>1?'s':''}` : '';
   if (!recent.length) { scroller.innerHTML = `<p class="muted">Sem avaliações recentes.</p>`; return; }
 
   scroller.innerHTML = "";
   for (const r of recent) {
     try {
-      const ob = await API.Obras.get(r.id.replace(/\D/g, "") || r.id);
+      const oid = r.obraId || r.id;
+      const ob = await API.Obras.get(String(oid).replace(/\D/g, "") || oid);
       const a = document.createElement("a");
-      a.href = `details.html?id=${encodeURIComponent(ob?.obraid ?? r.id)}`;
+      const href = `details.html?id=${encodeURIComponent(ob?.obraid ?? oid)}`;
+      a.href = (window.API && API.withApi) ? API.withApi(href) : href;
       a.className = "card card--sm";
       a.innerHTML = `
         <img class="card__poster" src="${ob?.poster_url || 'assets/placeholder.png'}" alt="${ob?.titulo || 'Título'}" onerror="this.src='assets/placeholder.png'"/>

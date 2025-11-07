@@ -14,6 +14,7 @@ import com.example.cinefile.DTO.AvaliacaoResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 
@@ -66,5 +67,10 @@ public class AvaliacaoService {
         }
 
         avaliacaoRepository.delete(avaliacao);
+    }
+
+    public java.util.List<AvaliacaoResponseDTO> listarUltimasDoUsuario(String username, Pageable page) {
+        var list = avaliacaoRepository.findByUsuario_UsernameOrderByDataCriacaoDesc(username, page);
+        return list.stream().map(AvaliacaoResponseDTO::new).toList();
     }
 }

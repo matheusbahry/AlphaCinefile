@@ -99,6 +99,18 @@
     async remove(id) { return http(`/api/watched/${encodeURIComponent(id)}`, { method: "DELETE" }); }
   };
 
+  const Avaliacoes = {
+    async create({ obraId, nota, comentario = "" }) {
+      return http('/api/avaliacoes', {
+        method: 'POST',
+        body: JSON.stringify({ obraId, nota, comentario })
+      });
+    },
+    async minhas(limit = 8) {
+      return http(`/api/avaliacoes/minhas?limit=${encodeURIComponent(limit)}`);
+    }
+  };
+
   // Helper para preservar ?api= nas navegações
   function withApi(url) {
     try {
@@ -111,5 +123,5 @@
   }
 
   // expõe global
-  window.API = { Auth, Usuarios, UsuariosPriv, Obras, Watchlist, Watched, http, withApi };
+  window.API = { Auth, Usuarios, UsuariosPriv, Obras, Watchlist, Watched, Avaliacoes, http, withApi };
 })();

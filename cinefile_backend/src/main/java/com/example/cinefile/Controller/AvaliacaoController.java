@@ -6,10 +6,12 @@ import com.example.cinefile.DTO.AvaliacaoResponseDTO;
 import com.example.cinefile.Service.AvaliacaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/avaliacoes")
@@ -62,5 +64,17 @@ public class AvaliacaoController {
 
         avaliacaoService.deletarAvaliacao(id, usuarioLogado);
         return ResponseEntity.noContent().build();
+    }
+
+    // -------- GET: minhas últimas avaliações --------
+    @GetMapping("/minhas")
+    public ResponseEntity<List<AvaliacaoResponseDTO>> minhas(
+            @AuthenticationPrincipal Usuario usuarioLogado,
+            @RequestParam(name = "limit", defaultValue = "8") int limit
+    ) {
+        if (usuarioLogado == null) return ResponseEntity.status(401).build();
+        var page = PageRequest.of(0, Math.max(1, Math.min(50, limit)));
+        var list = avaliacaoService.listarUltimasDoUsuario(usuarioLogado.getUsername(), page);
+        return ResponseEntity.ok(list);
     }
 }
