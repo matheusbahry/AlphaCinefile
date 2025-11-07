@@ -37,6 +37,10 @@ Projeto com frontend estático (`Frontend_cinefile/`) e backend Spring Boot (`ci
   - Crie `Frontend_cinefile/js/config.js` com `window.API_BASE = "https://SEU_BACKEND";` (arquivo é ignorado pelo Git) e publique você mesmo o arquivo (ou torne-o público se não contiver segredos), ou
   - Acesse com query param: `.../index.html?api=https%3A%2F%2FSEU_BACKEND`.
 
+Link ao vivo:
+- Home (Pages): https://matheusbahry.github.io/AlphaCinefile/index.html
+- Com backend Render: https://matheusbahry.github.io/AlphaCinefile/index.html?api=https%3A%2F%2Falpha-cinefile.onrender.com
+
 
 ## Guia Rápido (Equipe)
 - URLs do frontend (abra via Live Server):
