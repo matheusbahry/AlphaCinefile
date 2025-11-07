@@ -7,7 +7,7 @@ services:
     name: alpha-cinefile
     env: java
     plan: free
-    rootDirectory: cinefile_backend
+    rootDir: cinefile_backend
     buildCommand: chmod +x mvnw && ./mvnw -DskipTests package
     startCommand: >-
       java
