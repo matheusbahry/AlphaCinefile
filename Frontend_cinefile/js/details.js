@@ -22,6 +22,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `;
 
+    // Ajustes de UI + bloco de estatísticas
+    try { document.getElementById("btnWatched").textContent = "Assistido"; } catch {}
+    const statsEl = document.createElement('p');
+    statsEl.id = 'detailsStats';
+    statsEl.className = 'muted';
+    details.appendChild(statsEl);
+    (async () => {
+      try {
+        const s = await API.http(`/api/avaliacoes/obra/${encodeURIComponent(id)}/stats`);
+        const media = Number(s?.media || 0).toFixed(1);
+        const total = Number(s?.total || 0);
+        const minha = s && typeof s.minha !== 'undefined' ? ` — sua: ${s.minha}★` : '';
+        statsEl.textContent = total ? `Média: ${media} (${total} avaliações)${minha}` : '';
+      } catch {}
+    })();
+
     document.getElementById("btnWatchlist").addEventListener("click", async () => {
       if (!API.Auth.has()) {
         const redirect = (window.API && API.withApi) ? API.withApi("login.html") : "login.html";
