@@ -37,6 +37,8 @@ public class SecurityConfig {
                     return cfg;
                 }))
                 .authorizeHttpRequests(auth -> auth
+                        // Preflight CORS deve passar sem autenticação
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/usuarios/login", "/api/usuarios/cadastro").permitAll()
                         // Libera catálogo (raiz e filhos)
                         .requestMatchers(HttpMethod.GET, "/api/obras", "/api/obras/**").permitAll()
