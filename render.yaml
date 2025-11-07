@@ -9,13 +9,6 @@ services:
     plan: free
     rootDir: cinefile_backend
     dockerfilePath: Dockerfile
-    dockerCommand: >-
-      java
-      -Dserver.port=$PORT
-      -Dspring.datasource.url=jdbc:postgresql://$DB_HOST:$DB_PORT/$DB_NAME
-      -Dspring.datasource.username=$DB_USER
-      -Dspring.datasource.password=$DB_PASSWORD
-      -jar /app/app.jar
     envVars:
       - key: DB_HOST
         fromDatabase:
@@ -40,3 +33,6 @@ services:
       # Opcional: TMDB key se o backend vier a usar
       - key: TMDB_API_KEY
         value: ""
+      # Ativa profile que lê as variáveis acima
+      - key: SPRING_PROFILES_ACTIVE
+        value: "prod"
