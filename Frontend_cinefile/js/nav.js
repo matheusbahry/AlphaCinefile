@@ -14,6 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // UI auth
   applyAuthUI();
+
+  // Preserva ?api= nos links internos
+  try {
+    const q = new URLSearchParams(location.search);
+    const api = q.get('api');
+    if (api) {
+      document.querySelectorAll("a[href$='.html']").forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('http')) return;
+        const sep = href.includes('?') ? '&' : '?';
+        if (!/[?&]api=/.test(href)) a.setAttribute('href', href + sep + 'api=' + encodeURIComponent(api));
+      });
+    }
+  } catch {}
 });
 
 function applyAuthUI() {

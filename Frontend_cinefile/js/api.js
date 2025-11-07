@@ -15,8 +15,13 @@
     set basic(v) { try { v ? localStorage.setItem(STORAGE_KEY, v) : localStorage.removeItem(STORAGE_KEY); } catch {} }
   };
 
-  function buildHeaders(extra = {}) {
-    const h = { "Content-Type": "application/json", ...extra };
+  function buildHeaders(extra = {}, method = "GET") {
+    const h = { ...extra };
+    const m = String(method || "GET").toUpperCase();
+    // Só define Content-Type automaticamente quando não for GET/HEAD/OPTIONS
+    if (m !== "GET" && m !== "HEAD" && m !== "OPTIONS") {
+      if (!h["Content-Type"]) h["Content-Type"] = "application/json";
+    }
     if (State.basic) h["Authorization"] = State.basic;
     return h;
   }
@@ -32,7 +37,8 @@
         } catch {}
       }
     }
-    const res = await fetch(base + path, { ...opts, headers: buildHeaders(opts.headers || {}) });
+    const method = (opts && opts.method) || "GET";
+    const res = await fetch(base + path, { ...opts, headers: buildHeaders(opts.headers || {}, method) });
     const text = await res.text();
     if (!res.ok) {
       const err = new Error(text || String(res.status));
@@ -93,6 +99,17 @@
     async remove(id) { return http(`/api/watched/${encodeURIComponent(id)}`, { method: "DELETE" }); }
   };
 
+  // Helper para preservar ?api= nas navegações
+  function withApi(url) {
+    try {
+      const q = new URLSearchParams(location.search);
+      const api = q.get('api');
+      if (!api) return url;
+      const sep = url.includes('?') ? '&' : '?';
+      return url + sep + 'api=' + encodeURIComponent(api);
+    } catch { return url; }
+  }
+
   // expõe global
-  window.API = { Auth, Usuarios, UsuariosPriv, Obras, Watchlist, Watched, http };
+  window.API = { Auth, Usuarios, UsuariosPriv, Obras, Watchlist, Watched, http, withApi };
 })();

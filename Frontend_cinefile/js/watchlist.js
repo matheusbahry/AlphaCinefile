@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function toCard(ob) {
     const a = document.createElement("a");
-    a.href = `details.html?id=${encodeURIComponent(ob.obraid)}`;
+    const href = `details.html?id=${encodeURIComponent(ob.obraid)}`;
+    a.href = (window.API && API.withApi) ? API.withApi(href) : href;
     a.className = "card";
     a.innerHTML = `
       <img src="${ob.poster_url || 'assets/placeholder.png'}" alt="${ob.titulo}" class="card__poster" onerror="this.src='assets/placeholder.png'"/>

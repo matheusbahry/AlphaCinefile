@@ -23,13 +23,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
 
     document.getElementById("btnWatchlist").addEventListener("click", async () => {
-      if (!API.Auth.has()) { location.href = "login.html?redirect=" + encodeURIComponent(location.pathname + location.search); return; }
+      if (!API.Auth.has()) {
+        const redirect = (window.API && API.withApi) ? API.withApi("login.html") : "login.html";
+        location.href = redirect + (redirect.includes('?') ? '&' : '?') + 'redirect=' + encodeURIComponent(location.pathname + location.search);
+        return;
+      }
       await API.Watchlist.add(id);
       alert("Adicionado à Watchlist!");
     });
 
     document.getElementById("btnWatched").addEventListener("click", async () => {
-      if (!API.Auth.has()) { location.href = "login.html?redirect=" + encodeURIComponent(location.pathname + location.search); return; }
+      if (!API.Auth.has()) {
+        const redirect = (window.API && API.withApi) ? API.withApi("login.html") : "login.html";
+        location.href = redirect + (redirect.includes('?') ? '&' : '?') + 'redirect=' + encodeURIComponent(location.pathname + location.search);
+        return;
+      }
       await API.Watched.add(id);
       alert("Marcado como assistido!");
     });

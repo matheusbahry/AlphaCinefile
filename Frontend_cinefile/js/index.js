@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p class="card__title">${ob.titulo}</p>
       `;
       card.addEventListener("click", () => {
-        location.href = `details.html?id=${ob.obraid}`;
+        const url = `details.html?id=${ob.obraid}`;
+        location.href = (window.API && API.withApi) ? API.withApi(url) : url;
       });
       container.appendChild(card);
     });

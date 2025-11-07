@@ -56,7 +56,8 @@ const PosterObserver = (() => {
 function createCarouselItem(item) {
   const link = document.createElement("a");
   link.className = "item__link";
-  link.href = `details.html?id=${encodeURIComponent(item.id)}`;
+  const href = `details.html?id=${encodeURIComponent(item.id)}`;
+  link.href = (window.API && API.withApi) ? API.withApi(href) : href;
   link.setAttribute("aria-label", `${item.title} (${item.year})`);
 
   const card = document.createElement("article");
